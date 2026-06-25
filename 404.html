@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="3; url=https://hegemanandco.github.io/HegemanAndCo/Admin/RenderPortal.html" />
     <title>Page Not Found</title>
     <style>
       body {
@@ -13,10 +12,30 @@
         color: #333;
       }
     </style>
+    <script>
+      (function () {
+        // Where to send people if we can't figure out where they came from
+        var fallback = "https://hegemanandco.github.io/HegemanAndCo/Admin/RenderPortal.html";
+        var referrer = document.referrer;
+
+        setTimeout(function () {
+          if (referrer && referrer !== window.location.href) {
+            // Go back to the page that linked here
+            window.location.replace(referrer);
+          } else if (window.history.length > 1) {
+            // No referrer available, but there's history to step back through
+            window.history.back();
+          } else {
+            // Direct visit with no history, send to the portal
+            window.location.replace(fallback);
+          }
+        }, 3000);
+      })();
+    </script>
   </head>
   <body>
     <h1>404 — Page Not Found</h1>
-    <p>Redirecting you to the portal...</p>
-    <p><a href="https://hegemanandco.github.io/HegemanAndCo/Admin/RenderPortal.html">Click here if not redirected</a></p>
+    <p>Redirecting you back to the previous page...</p>
+    <p><a href="#" onclick="history.back(); return false;">Click here if not redirected</a></p>
   </body>
 </html>
