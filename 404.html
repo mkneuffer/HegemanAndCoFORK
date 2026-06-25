@@ -14,21 +14,9 @@
     </style>
     <script>
       (function () {
-        // Where to send people if we can't figure out where they came from
-        var fallback = "https://hegemanandco.github.io/HegemanAndCo/Admin/RenderPortal.html";
-        var referrer = document.referrer;
-
         setTimeout(function () {
-          if (referrer && referrer !== window.location.href) {
-            // Go back to the page that linked here
-            window.location.replace(referrer);
-          } else if (window.history.length > 1) {
-            // No referrer available, but there's history to step back through
-            window.history.back();
-          } else {
-            // Direct visit with no history, send to the portal
-            window.location.replace(fallback);
-          }
+          // Step back to the previous page, same as the link below
+          window.history.back();
         }, 3000);
       })();
     </script>
